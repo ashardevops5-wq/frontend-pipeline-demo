@@ -22,7 +22,13 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploy stage - Skipping, just marking success.'
+                echo 'Starting live preview server...'
+                sh '''
+                  pkill -f "http.server" || true
+                  cd $WORKSPACE
+                  nohup python3 -m http.server 8081 &
+                '''
+                echo "Project live hai: http://192.168.88.94:8081"
             }
         }
     }
