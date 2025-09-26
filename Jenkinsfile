@@ -24,9 +24,9 @@ pipeline {
             steps {
                 echo 'Starting live preview server...'
                 sh '''
-                  pkill -f "http.server" || true
+                  pkill -f http.server || true
                   cd $WORKSPACE
-                  nohup python3 -m http.server 8081 &
+                  nohup python3 -m http.server 8081 --bind 0.0.0.0 &
                 '''
                 echo "Project live hai: http://192.168.88.94:8081"
             }
