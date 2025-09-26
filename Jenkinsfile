@@ -2,24 +2,27 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/ashardevops5-wq/frontend-pipeline-demo.git', branch: 'main'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo "Building the project..."
-                sh 'npm install'
-                sh 'npm run build'
+                echo 'Build stage - Static project, nothing to build.'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests..."
-                sh 'npm test'
+                echo 'Test stage - No tests, skipping.'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying application..."
+                echo 'Deploy stage - Skipping, just marking success.'
             }
         }
     }
